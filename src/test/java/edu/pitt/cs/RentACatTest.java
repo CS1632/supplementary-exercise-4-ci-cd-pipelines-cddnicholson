@@ -36,13 +36,22 @@ public class RentACatTest {
 		r = RentACat.createInstance();
 
 		// 2. Create an unrented Cat with ID 1 and name "Jennyanydots", assign to c1
-		// TODO: Fill in
+		c1 = Mockito.mock(Cat.class);
+		when(c1.getId()).thenReturn(1);
+		when(c1.getName()).thenReturn("Jennyanydots");
+		r.addCat(c1);
 
 		// 3. Create an unrented Cat with ID 2 and name "Old Deuteronomy", assign to c2
-		// TODO: Fill in
+		c2 = Mockito.mock(Cat.class);
+		when(c2.getId()).thenReturn(2);
+		when(c2.getName()).thenReturn("Old Deuteronomy");
+		r.addCat(c2);
 
 		// 4. Create an unrented Cat with ID 3 and name "Mistoffelees", assign to c3
-		// TODO: Fill in
+		c3 = Mockito.mock(Cat.class);
+		when(c3.getId()).thenReturn(3);
+		when(c3.getName()).thenReturn("Mistoffelees");
+		r.addCat(c3);
 	}
 
 	@After
@@ -57,7 +66,7 @@ public class RentACatTest {
 
 	/**
 	 * Test case for Cat getCat(int id).
-	 * 
+	 *
 	 * <pre>
 	 * Preconditions: r has no cats.
 	 * Execution steps: Call getCat(2).
@@ -67,12 +76,12 @@ public class RentACatTest {
 
 	@Test
 	public void testGetCatNullNumCats0() {
-		// TODO
+		assertNull(r.getCat(2));
 	}
 
 	/**
 	 * Test case for Cat getCat(int id).
-	 * 
+	 *
 	 * <pre>
 	 * Preconditions: c1, c2, and c3 are added to r using addCat(Cat c).
 	 * Execution steps: Call getCat(2).
@@ -88,7 +97,7 @@ public class RentACatTest {
 
 	/**
 	 * Test case for boolean catAvailable(int id).
-	 * 
+	 *
 	 * <pre>
 	 * Preconditions: r has no cats.
 	 * Execution steps: Call catAvailable(2).
@@ -98,12 +107,12 @@ public class RentACatTest {
 
 	@Test
 	public void testCatAvailableFalseNumCats0() {
-		// TODO
+		assertFalse(r.catAvailable(2));
 	}
 
 	/**
 	 * Test case for boolean catAvailable(int id).
-	 * 
+	 *
 	 * <pre>
 	 * Preconditions: c1, c2, and c3 are added to r using addCat(Cat c).
 	 *                c3 is rented.
@@ -115,12 +124,12 @@ public class RentACatTest {
 
 	@Test
 	public void testCatAvailableTrueNumCats3() {
-		// TODO
+		assertTrue(r.catAvailable(2));
 	}
 
 	/**
 	 * Test case for boolean catAvailable(int id).
-	 * 
+	 *
 	 * <pre>
 	 * Preconditions: c1, c2, and c3 are added to r using addCat(Cat c).
 	 *                c2 is rented.
@@ -132,12 +141,12 @@ public class RentACatTest {
 
 	@Test
 	public void testCatAvailableFalseNumCats3() {
-		// TODO
+		assertFalse(r.catAvailable(2));
 	}
 
 	/**
 	 * Test case for boolean catExists(int id).
-	 * 
+	 *
 	 * <pre>
 	 * Preconditions: r has no cats.
 	 * Execution steps: Call catExists(2).
@@ -152,7 +161,7 @@ public class RentACatTest {
 
 	/**
 	 * Test case for boolean catExists(int id).
-	 * 
+	 *
 	 * <pre>
 	 * Preconditions: c1, c2, and c3 are added to r using addCat(Cat c).
 	 * Execution steps: Call catExists(2).
@@ -162,12 +171,12 @@ public class RentACatTest {
 
 	@Test
 	public void testCatExistsTrueNumCats3() {
-		// TODO
+		assertTrue(r.catExists(2));
 	}
 
 	/**
 	 * Test case for String listCats().
-	 * 
+	 *
 	 * <pre>
 	 * Preconditions: r has no cats.
 	 * Execution steps: Call listCats().
@@ -182,7 +191,7 @@ public class RentACatTest {
 
 	/**
 	 * Test case for String listCats().
-	 * 
+	 *
 	 * <pre>
 	 * Preconditions: c1, c2, and c3 are added to r using addCat(Cat c).
 	 * Execution steps: Call listCats().
@@ -198,7 +207,7 @@ public class RentACatTest {
 
 	/**
 	 * Test case for boolean rentCat(int id).
-	 * 
+	 *
 	 * <pre>
 	 * Preconditions: r has no cats.
 	 * Execution steps: Call rentCat(2).
@@ -213,7 +222,7 @@ public class RentACatTest {
 
 	/**
 	 * Test case for boolean rentCat(int id).
-	 * 
+	 *
 	 * <pre>
 	 * Preconditions: c1, c2, and c3 are added to r using addCat(Cat c).
 	 *                c2 is rented.
@@ -221,7 +230,7 @@ public class RentACatTest {
 	 * Postconditions: Return value is false.
 	 *                 c1.rentCat(), c2.rentCat(), c3.rentCat() are never called.
 	 * </pre>
-	 * 
+	 *
 	 * Hint: See sample_code/mockito_example/NoogieTest.java in the course
 	 * repository for an example of behavior verification. Refer to the
 	 * testBadgerPlayCalled method.
@@ -234,7 +243,7 @@ public class RentACatTest {
 
 	/**
 	 * Test case for boolean returnCat(int id).
-	 * 
+	 *
 	 * <pre>
 	 * Preconditions: r has no cats.
 	 * Execution steps: Call returnCat(2).
@@ -249,7 +258,7 @@ public class RentACatTest {
 
 	/**
 	 * Test case for boolean returnCat(int id).
-	 * 
+	 *
 	 * <pre>
 	 * Preconditions: c1, c2, and c3 are added to r using addCat(Cat c).
 	 *                c2 is rented.
@@ -258,7 +267,7 @@ public class RentACatTest {
 	 *                 c2.returnCat() is called exactly once.
 	 *                 c1.returnCat() and c3.returnCat are never called.
 	 * </pre>
-	 * 
+	 *
 	 * Hint: See sample_code/mockito_example/NoogieTest.java in the course
 	 * repository for an example of behavior verification. Refer to the
 	 * testBadgerPlayCalled method.
