@@ -44,16 +44,32 @@ jobs:
       with:
         name: Jacoco coverage results
         path: target/site/jacoco
+    
+    # Stores all files in the current path and associates them with the key "cached-build-${{github.sha}}"
+    - name: Cache build
+      uses: actions/cache@v3
+      with:
+        key: cached-build-${{github.sha}}
+        path: .
 
   # Uploads dependency graph to GitHub to receive Dependabot alerts 
   update_dependence_graph:
+  
+    needs: [maven_test]  # Enforces that maven_test runs first
 
     runs-on: ubuntu-latest
 
     permissions:
-      contents: read
+      contents: write
 
     steps:
+    
+    # finds the previously cached build files using the stored key to construct a dependence graph analysis
+    - name: Restore cached build
+      uses: actions/cache@v3
+      with:
+        key: cached-build-${{github.sha}}
+        path: .
 
     # https://github.com/marketplace/actions/maven-dependency-tree-dependency-submission
     - name: Update dependency graph
